@@ -12,6 +12,49 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+.btn-decrease {
+    background-color: #ff4c4c; /* Red color for decrease button */
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1rem;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.btn-decrease:hover {
+    background-color: #ff1a1a; /* Darker red on hover */
+}
+.btn-increase {
+    background-color: #4cff55; /* Red color for decrease button */
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1rem;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.btn-increase:hover {
+    background-color: #05703e; /* Darker red on hover */
+}
+
+.currency-select {
+    color: green;
+    background-color: #f0f8f5;
+    border: 1px solid green;
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+
+.currency-select:focus {
+    outline: none;
+    box-shadow: 0 0 5px green;
+}
 
 .App-header {
   background-color: #282c34;
@@ -22,6 +65,19 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+.currency-select {
+    background-color: #e0f7fa; /* Light green shade */
+    border: 1px solid #4caf50; /* Green border */
+    color: #004d40; /* Dark green text */
+    padding: 5px;
+    border-radius: 4px;
+    font-size: 16px;
+    outline: none;
+}
+
+.currency-select:focus {
+    border-color: #81c784; /* Lighter green border on focus */
 }
 
 .App-link {

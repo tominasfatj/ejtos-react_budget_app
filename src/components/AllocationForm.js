@@ -2,7 +2,8 @@ import React, { useContext, useState } from 'react';
 import { AppContext } from '../context/AppContext';
 
 const AllocationForm = (props) => {
-    const { dispatch,remaining  } = useContext(AppContext);
+    const { dispatch,remaining , currency } = useContext(AppContext);
+    
 
     const [name, setName] = useState('');
     const [cost, setCost] = useState('');
@@ -11,10 +12,11 @@ const AllocationForm = (props) => {
     const submitEvent = () => {
 
             if(cost > remaining) {
-                alert("The value cannot exceed remaining funds  £"+remaining);
+                alert("The value cannot exceed remaining funds"+   {currency} +remaining);
                 setCost("");
                 return;
             }
+            
 
         const expense = {
             name: name,
@@ -33,6 +35,32 @@ const AllocationForm = (props) => {
             }
     };
 
+    const budget_allocation = (event) =>{
+        const value = parseInt(event.target.value);
+        if(value > remaining){
+             alert("The value cannot exceed remaining funds "+ {currency} +remaining);
+            setCost("");
+            return;
+        }
+        else{
+        setCost(value)
+        }
+    };
+    const getCurrencySymbol = (newCurrency) => {
+        switch (newCurrency) {
+            case 'dollar':
+                return '$';
+            case 'pound':
+                return '£';
+            case 'euro':
+                return '€';
+            case 'rupee':
+                return '₹';
+            default:
+                return '$'; // Default to dollar if unknown
+        }
+    };
+
     return (
         <div>
             <div className='row'>
@@ -49,6 +77,7 @@ const AllocationForm = (props) => {
                 <option value="HR" name="hr">HR</option>
                 <option value="IT" name="it">IT</option>
                 <option value="Admin" name="admin">Admin</option>
+                
                   </select>
 
                     <div className="input-group-prepend" style={{ marginLeft: '2rem' }}>
@@ -58,15 +87,19 @@ const AllocationForm = (props) => {
                         <option defaultValue value="Add" name="Add">Add</option>
                 <option value="Reduce" name="Reduce">Reduce</option>
                   </select>
+                  <span style={{ marginLeft: '0.5rem', fontSize: '1.2em', verticalAlign: 'middle' }}>{getCurrencySymbol(currency)}</span> {/* Adjusted inline style for currency display */}
 
                     <input
+                        
                         required='required'
                         type='number'
                         id='cost'
                         value={cost}
-                        style={{ marginLeft: '2rem' , size: 10}}
-                        onChange={(event) => setCost(event.target.value)}>
+                        style={{ marginLeft: 'rem' , size: 10}}
+                        onChange={budget_allocation}>
+                        
                         </input>
+                        
 
                     <button className="btn btn-primary" onClick={submitEvent} style={{ marginLeft: '2rem' }}>
                         Save
